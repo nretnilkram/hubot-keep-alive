@@ -39,6 +39,6 @@ module.exports = (robot) ->
 
   # Set the cronjob and make sure the schedule is valid
   try
-    new CronJob(cronSchedule, keepAlive(robot), null, true, timezone)
+    new cronJob(cronSchedule, keepAlive(robot), null, true, timezone)
   catch e
     console.log e
