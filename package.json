@@ -1,0 +1,36 @@
+{
+  "name": "hubot-keep-alive",
+  "description": "A hubot script that keeps the hubot Heroko web dyno alive",
+  "version": "18.2.24",
+  "author": "Nretnil Kram <signkram@gmail.com>",
+  "license": "MIT",
+  "keywords": "hubot, hubot-scripts",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nretnilkram/hubot-keep-alive.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nretnilkram/hubot-keep-alive/issues"
+  },
+  "dependencies": {
+    "cron": "^1.3.0"
+  },
+  "peerDependencies": {
+    "hubot": ">=2 <10 || 0.0.0-development"
+  },
+  "devDependencies": {
+    "hubot": "2.x",
+    "mocha": "*",
+    "chai": "*",
+    "sinon-chai": "*",
+    "sinon": "*",
+    "grunt-mocha-test": "~0.13.3",
+    "grunt-release": "~0.14.0",
+    "matchdep": "~2.0.0",
+    "grunt-contrib-watch": "~1.0.0"
+  },
+  "main": "index.coffee",
+  "scripts": {
+    "test": "grunt test"
+  }
+}
