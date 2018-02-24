@@ -17,7 +17,7 @@
 
 module.exports = (robot) ->
   cronJob = require('cron').CronJob
-  keepAliveUrl = process.env.HUBOT_KEEP_ALIVE_URL or 'localhost:8080/keepalive/ping'
+  keepAliveUrl = process.env.HUBOT_KEEP_ALIVE_URL or 'http://localhost:8080/keepalive/ping'
   cronSchedule = process.env.HUBOT_KEEP_ALIVE_CRON or '* */5 * * * *'
   timezone = process.env.TZ or 'UTC'
 
