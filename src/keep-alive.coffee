@@ -21,13 +21,13 @@ module.exports = (robot) ->
   cronSchedule = process.env.HUBOT_KEEP_ALIVE_CRON or '* */5 6-22 * * *'
   timezone = process.env.TZ or 'UTC'
 
-  console.log('keepAliveUrl: ', keepAliveUrl)
-  console.log('cronSchedule: ', cronSchedule)
+  robot.logger.info('keepAliveUrl: ', keepAliveUrl)
+  robot.logger.info('cronSchedule: ', cronSchedule)
 
   # Go Ping Hubot
   keepAlive = (robot) ->
     robot.http(keepAliveUrl).get() (err, response, body) ->
-      console.log('body: ', body)
+      robot.logger.info('get response: ', body)
 
   # Response from request
   keepAliveResponse = (req, res) ->
