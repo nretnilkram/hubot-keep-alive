@@ -23,6 +23,7 @@ module.exports = (robot) ->
 
   robot.logger.info('keepAliveUrl: ', keepAliveUrl)
   robot.logger.info('cronSchedule: ', cronSchedule)
+  robot.logger.info('timzone: ', timezone)
 
   # Go Ping Hubot
   keepAlive = (robot) ->
