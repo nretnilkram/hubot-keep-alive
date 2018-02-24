@@ -21,8 +21,8 @@ module.exports = (robot) ->
   cronSchedule = process.env.HUBOT_KEEP_ALIVE_CRON or '* */5 * * * *'
   timezone = process.env.TZ or 'UTC'
 
-  console.log(keepAliveUrl)
-  console.log(cronSchedule)
+  console.log('keepAliveUrl: ', keepAliveUrl)
+  console.log('cronSchedule: ', cronSchedule)
 
   # Go Ping Hubot
   keepAlive = (robot) ->
@@ -41,4 +41,4 @@ module.exports = (robot) ->
   try
     new CronJob(cronSchedule, keepAlive(robot), null, true, timezone)
   catch e
-    console.log "cron pattern not valid"
+    console.log e
