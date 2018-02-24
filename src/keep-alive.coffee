@@ -18,8 +18,11 @@
 module.exports = (robot) ->
   cronJob = require('cron').CronJob
   keepAliveUrl = process.env.HUBOT_KEEP_ALIVE_URL or 'localhost:8080/keepalive/ping'
-  cronSchedule = process.env.HUBOT_KEEP_ALIVE_CRON or '*/5 * * * *'
+  cronSchedule = process.env.HUBOT_KEEP_ALIVE_CRON or '* */5 * * * *'
   timezone = process.env.TZ or 'UTC'
+
+  console.log(keepAliveUrl)
+  console.log(cronSchedule)
 
   # Go Ping Hubot
   keepAlive = (robot) ->
