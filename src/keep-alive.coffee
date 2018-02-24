@@ -27,7 +27,7 @@ module.exports = (robot) ->
   # Go Ping Hubot
   keepAlive = (robot) ->
     robot.http(keepAliveUrl).get() (err, response, body) ->
-      robot.logger.info('get response: ', body)
+      # robot.logger.info('get response: ', body)
 
   # Response from request
   keepAliveResponse = (req, res) ->
