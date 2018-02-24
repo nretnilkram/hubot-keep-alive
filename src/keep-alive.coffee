@@ -17,24 +17,14 @@
 
 module.exports = (robot) ->
   cronJob = require('cron').CronJob
-  keepAliveUrl = process.env.HUBOT_KEEP_ALIVE_URL
-  cronSchedule = process.env.HUBOT_KEEP_ALIVE_CRON
+  keepAliveUrl = process.env.HUBOT_KEEP_ALIVE_URL or 'localhost:8080/keepalive/ping'
+  cronSchedule = process.env.HUBOT_KEEP_ALIVE_CRON or '*/5 * * * *'
   timezone = process.env.TZ or 'UTC'
-
-  # Set the cronjob and make sure the schedule is valid
-  try
-  	new CronJob(cronSchedule, function(robot) ->
-  		console.log('this should not be printed');
-  	},
-    null,
-    true,
-    timezone)
-  catch e
-  	robot.logger.error "cron pattern not valid"
 
   # Go Ping Hubot
   keepAlive = (robot) ->
-    robot.get(keepAliveUrl)
+    robot.http(keepAliveUrl).get() (err, response, body) ->
+      console.log err, response, body
 
   # Response from request
   keepAliveResponse = (req, res) ->
@@ -43,3 +33,9 @@ module.exports = (robot) ->
 
   # Bind /keepalive/ping endpoint
   robot.router.get "/keepalive/ping", keepAliveResponse
+
+  # Set the cronjob and make sure the schedule is valid
+  try
+    new CronJob(cronSchedule, keepAlive(robot), null, true, timezone)
+  catch e
+    console.log "cron pattern not valid"
