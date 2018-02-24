@@ -7,7 +7,7 @@
 #
 # Configuration:
 #   HUBOT_KEEP_ALIVE_URL or HEROKU_URL: required
-#   HUBOT_KEEP_ALIVE_CRON: optional, defaults to 5 minutes
+#   HUBOT_KEEP_ALIVE_CRON: optional, defaults to every 5 minutes from 6am to 10pm
 #
 #   heroku config:add TZ="America/New_York"
 #
@@ -18,7 +18,7 @@
 module.exports = (robot) ->
   cronJob = require('cron').CronJob
   keepAliveUrl = process.env.HUBOT_KEEP_ALIVE_URL or 'http://localhost:8080/keepalive/ping'
-  cronSchedule = process.env.HUBOT_KEEP_ALIVE_CRON or '* */5 * * * *'
+  cronSchedule = process.env.HUBOT_KEEP_ALIVE_CRON or '* */5 6-22 * * *'
   timezone = process.env.TZ or 'UTC'
 
   console.log('keepAliveUrl: ', keepAliveUrl)
@@ -27,7 +27,7 @@ module.exports = (robot) ->
   # Go Ping Hubot
   keepAlive = (robot) ->
     robot.http(keepAliveUrl).get() (err, response, body) ->
-      console.log err, response, body
+      console.log('body: ', body)
 
   # Response from request
   keepAliveResponse = (req, res) ->
