@@ -1,7 +1,7 @@
 {
   "name": "hubot-keep-alive",
   "description": "A hubot script that keeps the hubot Heroko web dyno alive",
-  "version": "18.2.24",
+  "version": "18.3.1",
   "author": "Nretnil Kram <signkram@gmail.com>",
   "license": "MIT",
   "keywords": "hubot, hubot-scripts",
