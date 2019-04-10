@@ -12,21 +12,16 @@ Add hubot-keep-alive to you package.json and then to your `external-scripts.json
 ]
 ```
 
-## Configuring
+## Configuration
 
-hubot-keep-alive is configured by four environment variables:
+hubot-keep-alive is configured by three environment variables:
 
-* `HUBOT_KEEP_ALIVE_URL` - required, the complete URL to keepalive, including a trailing slash.
-* `HUBOT_KEEP_ALIVE_CRON` - optional,  set of times you want to keep the hubot alive. ( default, */5, * * * * )
-
-```
-heroku config:set HUBOT_KEEP_ALIVE_URL=PASTE_WEB_URL_HERE
-```
-
-The times are based on the timezone of your Heroku application which defaults to UTC.  You can change this with:
+* `HUBOT_KEEP_ALIVE_URL` - required, the fully qualified URL to keepalive, including a trailing slash.
+* `HUBOT_KEEP_ALIVE_CRON` - optional,  set of times you want to keep the hubot alive. ( default, \*/5, \* \* \* \* )
+* `TZ` - optional, default is "UTC"
 
 ```
-heroku config:add TZ="America/New_York"
+heroku config:set HUBOT_KEEP_ALIVE_URL=<url>
 ```
 
 ## Development

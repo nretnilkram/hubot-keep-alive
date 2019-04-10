@@ -6,10 +6,9 @@
 #   server that will go to sleep when dormant.
 #
 # Configuration:
-#   HUBOT_KEEP_ALIVE_URL or HEROKU_URL: required
+#   HUBOT_KEEP_ALIVE_URL: required
 #   HUBOT_KEEP_ALIVE_CRON: optional, defaults to every 5 minutes from 6am to 10pm
-#
-#   heroku config:add TZ="America/New_York"
+#   TZ: optional, defaults to "UTC"
 #
 # URLs:
 #   GET /heroku/keepalive
@@ -25,7 +24,6 @@ module.exports = (robot) ->
   robot.logger.info('cronSchedule: ', cronSchedule)
   robot.logger.info('timzone: ', timezone)
 
-  # Go Ping Hubot
   keepAlive = (robot) ->
     robot.http(keepAliveUrl).get() (err, response, body) ->
       if err
@@ -33,7 +31,6 @@ module.exports = (robot) ->
       else
         robot.logger.info('Hubot keep alive check successful.')
 
-  # Response from request
   keepAliveResponse = (req, res) ->
     res.set 'Content-Type', 'text/plain'
     res.send 'PONG'
@@ -41,7 +38,7 @@ module.exports = (robot) ->
   # Bind /keepalive/ping endpoint
   robot.router.get "/keepalive/ping", keepAliveResponse
 
-  # Set the cronjob and make sure the schedule is valid
+  # Create CronJob
   try
     new cronJob(cronSchedule, () ->
       keepAlive(robot)
