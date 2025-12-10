@@ -1,10 +1,13 @@
 {
   "name": "hubot-keep-alive",
   "description": "A hubot script that keeps the hubot Heroko web dyno alive",
-  "version": "19.4.9",
+  "version": "25.12.10",
   "author": "Nretnil Kram <signkram@gmail.com>",
   "license": "MIT",
-  "keywords": "hubot, hubot-scripts",
+  "keywords": [
+    "hubot",
+    "hubot-scripts"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/nretnilkram/hubot-keep-alive.git"
@@ -13,10 +16,10 @@
     "url": "https://github.com/nretnilkram/hubot-keep-alive/issues"
   },
   "dependencies": {
-    "cron": "^1.7.0"
+    "cron": "^4.4.0"
   },
   "peerDependencies": {
     "hubot": "^3"
   },
-  "main": "index.coffee"
+  "main": "index.js"
 }
