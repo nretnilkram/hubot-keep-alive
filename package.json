@@ -20,7 +20,7 @@
     "cron": "^4.4.0"
   },
   "peerDependencies": {
-    "hubot": "^3"
+    "hubot": "^13.1.4"
   },
   "main": "index.js"
 }
