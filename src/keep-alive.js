@@ -14,8 +14,9 @@
 //   GET /heroku/keepalive
 //
 
-module.exports = (robot) => {
-  const { CronJob } = require('cron');
+import { CronJob } from 'cron';
+
+export default (robot) => {
   const keepAliveUrl = process.env.HUBOT_KEEP_ALIVE_URL || 'http://localhost:8080/keepalive/ping';
   const cronSchedule = process.env.HUBOT_KEEP_ALIVE_CRON || '0 */5 6-22 * * *';
   const timezone = process.env.TZ || 'UTC';
@@ -25,7 +26,7 @@ module.exports = (robot) => {
   robot.logger.info('timzone: ', timezone);
 
   const keepAlive = (robot) => {
-    robot.http(keepAliveUrl).get()((err, response, body) => {
+    robot.http(keepAliveUrl).get()((err) => {
       if (err) {
         robot.logger.error(err);
       } else {
@@ -34,7 +35,7 @@ module.exports = (robot) => {
     });
   };
 
-  const keepAliveResponse = (req, res) => {
+  const keepAliveResponse = (_req, res) => {
     res.set('Content-Type', 'text/plain');
     res.send('PONG');
   };
